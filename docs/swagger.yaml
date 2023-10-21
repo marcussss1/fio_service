@@ -1,0 +1,175 @@
+basePath: /
+definitions:
+  models.AbbreviatedPeopleRequest:
+    properties:
+      name:
+        type: string
+      patronymic:
+        type: string
+      surname:
+        type: string
+    type: object
+  models.NoContentResponse:
+    type: object
+  models.People:
+    properties:
+      age:
+        type: integer
+      gender:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      nationality:
+        type: string
+      patronymic:
+        type: string
+      surname:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: danilakalash60@gmail.com
+    name: FIO API Support
+  description: Server API for FIO Service Application
+  title: FIO API
+  version: 1.0.1
+paths:
+  /api/v1/people:
+    delete:
+      description: Delete people
+      parameters:
+      - description: peopleID
+        in: query
+        name: peopleID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/models.NoContentResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Delete people
+      tags:
+      - People
+    get:
+      description: Get people
+      parameters:
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: surname
+        in: query
+        name: surname
+        type: string
+      - description: patronymic
+        in: query
+        name: patronymic
+        type: string
+      - description: start_age
+        in: query
+        name: start_age
+        type: integer
+      - description: end_age
+        in: query
+        name: end_age
+        type: integer
+      - description: gender
+        in: query
+        name: gender
+        type: string
+      - description: nationality
+        in: query
+        name: nationality
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.People'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Get people
+      tags:
+      - People
+    post:
+      description: Create people
+      parameters:
+      - description: Create people
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/models.AbbreviatedPeopleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.People'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Create people
+      tags:
+      - People
+    put:
+      description: Update people
+      parameters:
+      - description: peopleID
+        in: query
+        name: peopleID
+        required: true
+        type: string
+      - description: New people info
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/models.AbbreviatedPeopleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.People'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Update people
+      tags:
+      - People
+swagger: "2.0"
