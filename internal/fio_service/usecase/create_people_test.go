@@ -3,6 +3,8 @@ package usecase
 import (
 	"context"
 	"errors"
+	"testing"
+
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	mock_fio_service "github.com/marcussss1/fio_service/internal/mocks/fio_service"
@@ -10,7 +12,6 @@ import (
 	"github.com/marcussss1/fio_service/internal/models"
 	"github.com/marcussss1/fio_service/internal/pkg/e"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestUsecase_CreatePeople_Validation(t *testing.T) {

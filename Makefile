@@ -11,3 +11,7 @@ mocks: |
 	mockgen --source=internal/fio_service/usecase.go > internal/mocks/fio_service/usecase.go
 	mockgen --source=internal/fio_service/repository.go > internal/mocks/fio_service/repository.go
 	mockgen --source=internal/third_service/usecase.go > internal/mocks/third_service/usecase.go
+
+.PHONY: generate_api
+generate_api:
+	swag init -g cmd/api/main.go

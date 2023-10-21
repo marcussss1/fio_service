@@ -3,18 +3,18 @@ package http
 import (
 	"bytes"
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
+	"testing"
+
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	mock_fio_service "github.com/marcussss1/fio_service/internal/mocks/fio_service"
 	"github.com/marcussss1/fio_service/internal/models"
-	"github.com/marcussss1/fio_service/internal/pkg/http_utils"
-	"github.com/stretchr/testify/require"
-	"net/http"
-	"net/http/httptest"
-	"testing"
-
 	bussines_errors "github.com/marcussss1/fio_service/internal/pkg/e"
+	"github.com/marcussss1/fio_service/internal/pkg/utils"
+	"github.com/stretchr/testify/require"
 )
 
 func TestHandler_UpdatePeopleHandler_InvalidJSON(t *testing.T) {
@@ -40,7 +40,7 @@ func TestHandler_UpdatePeopleHandler_InvalidJSON(t *testing.T) {
 
 	err := h.UpdatePeopleHandler(ctx)
 	require.Error(t, err)
-	require.EqualValues(t, http.StatusInternalServerError, http_utils.StatusCode(err))
+	require.EqualValues(t, http.StatusInternalServerError, utils.StatusCode(err))
 }
 
 func TestHandler_UpdatePeopleHandler_UpdatePeopleByID_Error(t *testing.T) {
@@ -75,7 +75,7 @@ func TestHandler_UpdatePeopleHandler_UpdatePeopleByID_Error(t *testing.T) {
 
 	err := h.UpdatePeopleHandler(ctx)
 	require.ErrorIs(t, err, bussines_errors.ErrLongPatronymic)
-	require.EqualValues(t, http.StatusBadRequest, http_utils.StatusCode(err))
+	require.EqualValues(t, http.StatusBadRequest, utils.StatusCode(err))
 }
 
 func TestHandler_UpdatePeopleHandler_OK(t *testing.T) {

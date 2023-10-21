@@ -3,13 +3,14 @@ package repository
 import (
 	"context"
 	"errors"
+	"regexp"
+	"testing"
+
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/marcussss1/fio_service/internal/models"
 	"github.com/stretchr/testify/require"
-	"regexp"
-	"testing"
 )
 
 func TestRepository_UpdatePeopleByID_OK(t *testing.T) {

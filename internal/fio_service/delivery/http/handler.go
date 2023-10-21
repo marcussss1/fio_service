@@ -14,8 +14,8 @@ func NewFioHandler(e *echo.Echo, fioUsecase fio_service.Usecase) handler {
 
 	e.GET("api/v1/people", h.GetPeopleHandler)
 	e.POST("api/v1/people", h.CreatePeopleHandler)
-	e.PUT("api/v1/people/:peopleID", h.UpdatePeopleHandler)
-	e.DELETE("api/v1/people/:peopleID", h.DeletePeopleHandler)
+	e.PUT("api/v1/people", h.UpdatePeopleHandler)
+	e.DELETE("api/v1/people", h.DeletePeopleHandler)
 
 	return h
 }

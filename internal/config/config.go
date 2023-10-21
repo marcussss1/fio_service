@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/labstack/gommon/log"
 	"os"
+
+	"github.com/labstack/gommon/log"
 )
 
 var (

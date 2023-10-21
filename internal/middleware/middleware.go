@@ -2,11 +2,11 @@ package middleware
 
 import (
 	"encoding/json"
-	"github.com/marcussss1/fio_service/internal/pkg/http_utils"
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
+	"github.com/marcussss1/fio_service/internal/pkg/utils"
 )
 
 type jsonError struct {
@@ -23,7 +23,7 @@ func LoggerMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 		log.Info("Incoming request: ", ctx.Request().URL, ", ip: ", ctx.RealIP(), ", method: ", ctx.Request().Method, ", request_id: ", requestId)
 
 		if err := next(ctx); err != nil {
-			statusCode := http_utils.StatusCode(err)
+			statusCode := utils.StatusCode(err)
 			log.Error("HTTP code: ", statusCode, ", Error: ", err, ", request_id: ", requestId)
 
 			return ctx.JSON(statusCode, jsonError{err: err})
